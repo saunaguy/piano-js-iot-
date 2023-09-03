@@ -1,0 +1,139 @@
+int button1 = 13;
+int button2 = 11;
+int button3 = 9;
+int button4 = 7;
+int button5 = 5;
+int button6 = 6;
+
+bool button1Pressed = false;
+bool button2Pressed = false;
+bool button3Pressed = false;
+bool button4Pressed = false;
+bool button5Pressed = false;
+bool button6Pressed = false;
+
+void setup()
+{
+  pinMode(button1, INPUT);
+  pinMode(button2, INPUT);
+  pinMode(button3, INPUT);
+  pinMode(button4, INPUT);
+  pinMode(button5, INPUT);
+  pinMode(button6, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  bool pressButton1 = digitalRead(button1);
+  bool pressButton2 = digitalRead(button2);
+  bool pressButton3 = digitalRead(button3);
+  bool pressButton4 = digitalRead(button4);
+  bool pressButton5 = digitalRead(button5);
+  bool pressButton6 = digitalRead(button6);
+
+  if (pressButton1 && !button1Pressed)
+  {
+    button1Pressed = true;
+    Keyboard.press('1');
+  }
+  else if (!pressButton1 && button1Pressed)
+  {
+    button1Pressed = false;
+    Keyboard.release('1');
+  }
+
+  if (pressButton2 && !button2Pressed)
+  {
+    button2Pressed = true;
+    Keyboard.press('2');
+  }
+  else if (!pressButton2 && button2Pressed)
+  {
+    button2Pressed = false;
+    Keyboard.release('2');
+  }
+
+  if (pressButton3 && !button3Pressed)
+  {
+    button3Pressed = true;
+    Keyboard.press('3');
+  }
+  else if (!pressButton3 && button3Pressed)
+  {
+    button3Pressed = false;
+    Keyboard.release('3');
+  }
+
+  if (pressButton4 && !button4Pressed)
+  {
+    button4Pressed = true;
+    Keyboard.press('4');
+  }
+  else if (!pressButton4 && button4Pressed)
+  {
+    button4Pressed = false;
+    Keyboard.release('4');
+  }
+  
+  if (pressButton5 && !button5Pressed)
+  {
+    button5Pressed = true;
+    Keyboard.press('5');
+  }
+  else if (!pressButton5 && button5Pressed)
+  {
+    button5Pressed = false;
+    Keyboard.release('5');
+  }
+  
+  if (pressButton6 && !button6Pressed)
+  {
+    button6Pressed = true;
+    Keyboard.press('6');
+  }
+  else if (!pressButton6 && button6Pressed)
+  {
+    button6Pressed = false;
+    Keyboard.release('6');
+  }
+}
+
+
+/////////////////////////////////
+
+
+int buttons[] = {13, 11, 9, 7, 5, 6};
+int buttonCount = sizeof(buttons) / sizeof(buttons[0]);
+bool buttonPressed[6] = {false};
+
+void setup()
+{
+  for (int i = 0; i < buttonCount; i++)
+  {
+    pinMode(buttons[i], INPUT);
+  }
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  for (int i = 0; i < buttonCount; i++)
+  {
+    bool pressButton = digitalRead(buttons[i]);
+    
+    if (pressButton && !buttonPressed[i])
+    {
+      buttonPressed[i] = true;
+      Keyboard.press('1' + i);
+    }
+    else if (!pressButton && buttonPressed[i])
+    {
+      buttonPressed[i] = false;
+      Keyboard.release('1' + i);
+    }
+  }
+}
+
+
+for 문으로 압축시킨거

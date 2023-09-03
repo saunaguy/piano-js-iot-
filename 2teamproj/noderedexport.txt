@@ -1,0 +1,107 @@
+[
+    {
+        "id": "f0f87ea4356046f9",
+        "type": "serial in",
+        "z": "0e46e3ac34de65f3",
+        "name": "",
+        "serial": "c1efea74db6fb9f2",
+        "x": 310,
+        "y": 240,
+        "wires": [
+            [
+                "bbbccd831caa9ec4",
+                "611d37fd32e46fb7"
+            ]
+        ]
+    },
+    {
+        "id": "c46072609ea082f7",
+        "type": "debug",
+        "z": "0e46e3ac34de65f3",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "611d37fd32e46fb7",
+        "type": "function",
+        "z": "0e46e3ac34de65f3",
+        "name": "string to json",
+        "func": "var a = msg.payload;\n// msg.payload = JSON.parse(a);\n// return msg;\n\n// 객체 생성\nvar jsonObject = {};\njsonObject[\"type\"] =\"keydown\";\njsonObject[\"keyCode\"] = a;\n// msg.payload = JSON.parse(a);\nmsg.payload = jsonObject;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 240,
+        "wires": [
+            [
+                "c46072609ea082f7",
+                "c7a7d85dbf5c4bef"
+            ]
+        ]
+    },
+    {
+        "id": "c7a7d85dbf5c4bef",
+        "type": "websocket out",
+        "z": "0e46e3ac34de65f3",
+        "name": "",
+        "server": "a5c563f0583ae33b",
+        "client": "",
+        "x": 890,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "bbbccd831caa9ec4",
+        "type": "debug",
+        "z": "0e46e3ac34de65f3",
+        "name": "debug 6",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "c1efea74db6fb9f2",
+        "type": "serial-port",
+        "serialport": "/dev/ttyACM0",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "10",
+        "bin": "false",
+        "out": "time",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "a5c563f0583ae33b",
+        "type": "websocket-listener",
+        "path": "/switch",
+        "wholemsg": "false"
+    }
+]
